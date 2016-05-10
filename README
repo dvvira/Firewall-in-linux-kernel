@@ -1,0 +1,32 @@
+Simple firewall kernel module using netfilters. The filtering rules and the web-server IP address are hardcoded for simplicity. 
+
+###################### Problem definition ###############################################
+You have recently become part of this small organization and want to protect its network
+from some common attacks. After reviewing common threats you decide that a simple
+firewall with the following rules will provide your network sufficient protection.
+Firewall Rules:
+1. Block all ICMP packets coming in from outside except the ones going to the webserver.
+Though the local hosts should be able to ping outside.
+2. Block all ssh attempts from outside.
+3. Block port 80 (http) access from outside except for the web-server and test that an
+internal website on a local host is only accessible from inside.
+Implement a simple firewall as a linux kernel module with only 3 rules identified above.
+Get familiar with the Netfilter framework that provides hooks for you to filter packets
+and then take actions like drop or accept.
+######################################################################################## 
+
+File		: fire.c
+Enviroment	: Linux Firewall 3.13.0-24-generic #46-Ubuntu SMP Thu Apr 10 19:11:08 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+
+Steps to compile:
+From Ther Directory containing fire.c and Makefile run make
+>make
+
+Once module compiles successfully, load it using insmod or modprobe command. You need to be root user or privileged user to run insmod:
+>insmod fire.ko
+
+To remove the module, Run: 
+rmmod fire.ko
+
+
